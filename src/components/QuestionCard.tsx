@@ -10,15 +10,15 @@ type Props = {
     totalQuestions: number
 }
 const QuestionCard: React.FC<Props> = ({ question, answers, callback, userAnswer, questionNo, totalQuestions }) => (
-    <div>
-        <p className="number">Question: {questionNo} / {totalQuestions}</p>
-        <p dangerouslySetInnerHTML={{ __html: question }} />
+    <div className="px-5">
+        <p className="my-1 font-sans font-normal text-base text-gray-500">Question: {questionNo} / {totalQuestions}</p>
+        <p className="rounded-md font-semibold italic text-xl my-3" dangerouslySetInnerHTML={{ __html: question }} />
         <div>
             {
                 answers.map(answer => {
                     return (
-                        <div key={answer}>
-                            <button value={answer} disabled={!!userAnswer} onClick={callback}>
+                        <div className="px-10" key={answer}>
+                            <button className={`px-6 py-1 ${userAnswer?.correctAnswer === answer ? `bg-green-500` : null} ${userAnswer?.answer === answer ? 'bg-gray-600' :  "bg-gray-400"} disabled:bg-gray-400 text-black rounded-sm mt-1 w-full font-semibold text-md hover:ring-2 hover:ring-gray-900 hover:ring-opacity-50`} value={answer} disabled={!!userAnswer} onClick={callback}>
                                 <span dangerouslySetInnerHTML={{ __html: answer }} />
                             </button>
                         </div>

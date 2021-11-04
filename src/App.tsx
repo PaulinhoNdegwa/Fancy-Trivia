@@ -8,7 +8,7 @@ export type AnswerObject = {
   correct: boolean,
   correctAnswer: string
 }
-const TOTAL_QUESTIONS = 10;
+const TOTAL_QUESTIONS = 3;
 
 const App = () => {
 
@@ -64,15 +64,16 @@ const App = () => {
   }
 
   return (
-    <div className="App">
-      <h1>Awesome Trivia</h1>
+    <div className="main h-screen text-center pt-20">
+      <div className="container mx-auto w-1/2 bg-blue-100 text-center px-30 py-20">
+      <h1 className="text-3xl font-semibold text-blue-600 ">Awesome Trivia - <span className="text-xl font-semibold">Have fun and learn</span></h1>
       {
         gameOver || userAnswers.length === TOTAL_QUESTIONS ?
-          <button className="start" onClick={startTrivia}>Start</button>
+          <button className="px-6 py-1.5 bg-blue-600 text-white rounded mt-5 font-medium text-md" onClick={startTrivia}>Start {userAnswers.length === TOTAL_QUESTIONS ? "Again" : null}</button>
           : null
       }
-      {!gameOver ? <p className="score">Score: {score} </p> : null}
-      {loading && <p>Loading questions ...</p>}
+      {!gameOver ? <p className={` text-2xl my-2 ${userAnswers.length === TOTAL_QUESTIONS ? 'text-red-500' : 'text-blue-500 ' }`}> {userAnswers.length === TOTAL_QUESTIONS ? "Final Score: " : 'Score: '} {score} </p> : null}
+      {loading && <p className="inline px-7 py-1.5 mt-3 rounded-sm text-base font-semibold italic bg-gradient-to-r from-blue-400 via-pink-500 to-red-400">Loading {userAnswers.length === TOTAL_QUESTIONS ? "more" : null} questions ...</p>}
       {!loading && !gameOver &&
         (<QuestionCard
           questionNo={questionNo + 1}
@@ -85,9 +86,11 @@ const App = () => {
       }
       {
         !gameOver && !loading && userAnswers.length === questionNo + 1 && questionNo !== TOTAL_QUESTIONS - 1 ? (
-          <button className="next" onClick={nextQuestion}>Next Question</button>
+          <button className="px-6 py-1.5 bg-blue-600 text-white rounded mt-5 font-medium text-md" onClick={nextQuestion}>Next Question</button>
         ) : null
       }
+      <p className="mt-4 text-lg italic font-semibold text-red-500">{!loading && userAnswers.length === TOTAL_QUESTIONS ? "Yaay!! Quiz Over!" : null}</p>
+    </div>
     </div>
   );
 }
