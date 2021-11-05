@@ -18,7 +18,7 @@ const QuestionCard: React.FC<Props> = ({ question, answers, callback, userAnswer
                 answers.map(answer => {
                     return (
                         <div className="px-10" key={answer}>
-                            <button className={`px-6 py-1 ${userAnswer?.correctAnswer === answer ? `bg-green-500` : null} ${userAnswer?.answer === answer ? 'bg-gray-600' :  "bg-gray-400"} disabled:bg-gray-400 text-black rounded-sm mt-1 w-full font-semibold text-md hover:ring-2 hover:ring-gray-900 hover:ring-opacity-50`} value={answer} disabled={!!userAnswer} onClick={callback}>
+                            <button className={`px-6 py-1 ${userAnswer?.correctAnswer === answer ? `bg-green-500` : null} ${userAnswer?.answer === answer ? 'bg-gray-600' :  "bg-gray-400"} disabled:bg-gray-400 text-black rounded-sm mt-1 w-full font-semibold text-md hover:ring-4 hover:ring-blue-900 hover:ring-opacity-50`} value={answer} disabled={!!userAnswer} onClick={callback}>
                                 <span dangerouslySetInnerHTML={{ __html: answer }} />
                             </button>
                         </div>
